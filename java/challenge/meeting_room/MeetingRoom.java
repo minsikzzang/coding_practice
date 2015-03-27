@@ -23,16 +23,25 @@ public class MeetingRoom {
   static public int getMinNoRoom(ArrayList<Schedule> schedules) {
     ArrayList<Room> rooms = new ArrayList<Room>();
     rooms.add(new Room());
-    for (Schedule schedule: schedules) {
+
+    for (Schedule s: schedules) {
+      System.out.println("Show room availability");
+      for (Room room: rooms) {
+        System.out.println(room.getNumAvailableSlots());
+      }
+
+      if (s.isValid() != true) {
+        continue;
+      }
       boolean booked = false;
       for (int i = 0; i < rooms.size(); i++) {
-        if (rooms.get(i).book(schedule)) {
+        if (rooms.get(i).book(s)) {
           booked = true;
         }
       }
       if (!booked) {
         Room room = new Room();
-        room.book(schedule);
+        room.book(s);
         rooms.add(room);
       }
       if (rooms.size() > 0) {

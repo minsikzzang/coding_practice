@@ -1,7 +1,7 @@
 public class Schedule {
 
-  private int start;
-  private int end;
+  public int start;
+  public int end;
 
   /**
    * start - start time in hour
@@ -10,5 +10,9 @@ public class Schedule {
   public Schedule(int start, int end) {
     this.start = start;
     this.end = end;
+  }
+
+  public boolean isValid() {
+    return (this.start >= 0 && this.end < 24 && this.start < this.end);
   }
 }
